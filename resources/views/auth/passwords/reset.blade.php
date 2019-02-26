@@ -5,58 +5,47 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+                <div class="card-header">@lang('messages.resetPass')</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
-                        @csrf
+                    {!! Form::open('method'=>'POST', 'route'=>'password.update') !!}
 
-                        <input type="hidden" name="token" value="{{ $token }}">
+                        {!! Form::hidden('token', $token, []) !!}
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            {!! Form::label('email', trans('messages.lb_mail'), ['class'=>'col-md-4 col-form-label text-md-right']) !!}
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}" required autofocus>
+                                 {!! Form::email('email', old('email'), ['id'=>'email', 'class'=>'form-control', 'required autofocus']) !!}
 
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+                                @include('common.errors')
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                             {!! Form::label('password', trans('messages.lb_password'), ['class'=>'col-md-4 col-form-label text-md-right']) !!}
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                 {!! Form::password('password', ['id'=>'password', 'class'=>'form-control', 'required']) !!}
 
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                                @include('common.errors')
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                           {!! Form::label('password-confirm', trans('messages.lb_confirmPass'), ['class'=>'col-md-4 col-form-label text-md-right']) !!}
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                {!! Form::password('password_confirmation', ['id'=>'password-confirm', 'class'=>'form-control', 'required']) !!}
                             </div>
                         </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
-                                </button>
+                                {!! Form::submit(trans('messages.resetPass'), ['class'=>'btn btn-primary']) !!}
                             </div>
                         </div>
-                    </form>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
