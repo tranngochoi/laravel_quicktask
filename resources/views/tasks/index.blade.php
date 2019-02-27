@@ -2,26 +2,43 @@
 
 @section('content')
 
-    <div class="panel-body">
-        @if(session()->has('msg'))
-            <div class="alert alert-success">
-                {{ session()->get('msg') }}
-            </div>
-        @endif
+    <div class="container">
         @include('common.errors')
 
         {!! Form::open(['route'=>'tasks.index', 'method'=>'POST', 'class'=>'form-horizontal']) !!}
             <div class="form-group">
-                {!! Form::label('task-name', trans('messages.task'), ['class'=>'col-sm-3 control-label']) !!}
+                {!! Form::label('task-name', trans('messages.task'), ['class'=>'col-sm-3 control-label text-info']) !!}
                 <div class="col-sm-6">
                     {!! Form::text('name', '', ['id'=>'task-name', 'class'=>'form-control']) !!}
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-6">
-                    {!! Form::submit(trans('messages.addTask'), ['class'=>'btn btn-default']) !!}
+                    {!! Form::submit(trans('messages.addTask'), ['class'=>'btn btn-outline-danger']) !!}
                 </div>
             </div>
         {!! Form::close() !!}
+        @if (count($displayTasks) > config('setting.number'))
+            <div class="panel panel-default ">
+                <div class="col-sm-3 text-info">
+                    @lang('messages.currentTasks')
+                </div>
+
+                <div class="col-sm-6">
+                    <table class="table table-striped task-table">
+                        <tbody>
+                            @foreach ($displayTasks as $task)
+                                <tr>
+                                    <td class="table-text col-sm-6">
+                                        <div>{{ $task->name }}</div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        @endif
     </div>
+
 @endsection

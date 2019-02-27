@@ -41,6 +41,13 @@ class TaskController extends Controller
         $task = new Task;
         $task->name = $request->name;
         $resultAdd = $task->save();
+        if($resultAdd) {
+
+            return redirect()->route('tasks.index')->with('msg', trans('messages.msgAddSuccess'));
+        } else {
+
+            return redirect()->route('tasks.index')->with('msg', trans('messages.msgAddFail'));
+        }
     }
 
     /**
@@ -51,7 +58,7 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**

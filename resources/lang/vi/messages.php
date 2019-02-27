@@ -14,4 +14,9 @@ return [
     'btn_forgotPass' => 'Quên Mật Khẩu?',
     'resetPass' => 'Đổi Mật Khẩu',
     'sended' => 'Đã được gởi tới email của bạn',
+    'nameRequire' => 'Xin nhập tên task',
+    'nameMax' => 'Nhập tối đa 255 kí tự',
+    'msgAddSuccess' => 'Thêm thành công',
+    'msgAddFail' => 'Thêm không thành công',
+    'currentTasks' => 'Công việc hiện tại',
 ];
