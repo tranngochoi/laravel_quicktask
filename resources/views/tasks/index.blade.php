@@ -3,6 +3,11 @@
 @section('content')
 
     <div class="panel-body">
+        @if(session()->has('msg'))
+            <div class="alert alert-success">
+                {{ session()->get('msg') }}
+            </div>
+        @endif
         @include('common.errors')
 
         {!! Form::open(['route'=>'tasks.index', 'method'=>'POST', 'class'=>'form-horizontal']) !!}
@@ -17,5 +22,6 @@
                     {!! Form::submit(trans('messages.addTask'), ['class'=>'btn btn-default']) !!}
                 </div>
             </div>
+        {!! Form::close() !!}
     </div>
 @endsection
