@@ -14,7 +14,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-6">
-                    {!! Form::submit(trans('messages.addTask'), ['class'=>'btn btn-outline-danger']) !!}
+                    {!! Form::submit(trans('messages.addTask'), ['class'=>'btn btn-outline-success']) !!}
                 </div>
             </div>
         {!! Form::close() !!}
@@ -32,6 +32,12 @@
                                     <td class="table-text col-sm-6">
                                         <div>{{ $task->name }}</div>
                                     </td>
+
+                                    <td>
+                                        {!! Form::open(['route'=>['tasks.destroy', $task->id], 'method'=>'DELETE']) !!}
+                                            {!! Form::submit(trans('messages.btn_delete'), ['class'=>'btn btn-danger ', 'data-confirm' => trans('messages.confirmDelete')]) !!}
+                                        {!! Form::close() !!}
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -39,6 +45,7 @@
                 </div>
             </div>
         @endif
+
     </div>
 
 @endsection
