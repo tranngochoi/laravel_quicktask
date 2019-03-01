@@ -12,6 +12,7 @@
     <link rel="dns-prefetch" href="{{ asset('//fonts.gstatic.com') }}">
     {{ Html::style(asset('https://fonts.googleapis.com/css?family=Numito')) }}
     {{ Html::style(asset('css/app.css')) }}
+    {{ Html::script('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js') }}
     {{ Html::script(asset('js/ajaxLogout.js')) }}
 
 </head>
@@ -61,6 +62,7 @@
 
         <main class="py-4">
             @yield('content')
+            {{ Html::script('/js/task.js') }}
         </main>
     </div>
 </body>
